@@ -36,8 +36,7 @@ const News = (props) => {
         let data = await fetch(url);
         let parsedData = await data.json();
         setPage(page);
-        setArticles(articles.concat(parsedData.articles))
-        setTotalArticles(parsedData.totalResults);
+        setArticles(articles.concat(parsedData.articles));
     }
     const fetchMoreData = async () => {
         updateNewsFurther(page + 1);
@@ -49,7 +48,7 @@ const News = (props) => {
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreData}
-                hasMore={articles.length !== totalArticles}
+                hasMore={articles.length < totalArticles}
                 loader={<Spinner />}>
                 <div className="container">
                     <div className="row">
