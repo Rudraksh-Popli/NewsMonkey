@@ -11,7 +11,6 @@ const News = (props) => {
     const capitalizeFirstCharacter = (word) => {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
-    document.title = `${capitalizeFirstCharacter(props.category)} - NewsMonkey`;
     const updateNews = async (page) => {
         props.setProgress(10);
         setLoading(true);
@@ -28,6 +27,7 @@ const News = (props) => {
         props.setProgress(100);
     }
     useEffect(() => {
+        document.title = `${capitalizeFirstCharacter(props.category)} - NewsMonkey`;
         updateNews(1);
     }, [])
     const updateNewsFurther = async (page) => {
@@ -44,7 +44,7 @@ const News = (props) => {
     };
     return (
         <>
-            <h2 className='text-center my-3'>NewsMonkey - Top {capitalizeFirstCharacter(props.category)} Headlines</h2>
+            <h2 className='text-center' style={{ margin: "75px 0px 15px 0px" }}>NewsMonkey - Top {capitalizeFirstCharacter(props.category)} Headlines</h2>
             {loading && <Spinner />}
             <InfiniteScroll
                 dataLength={articles.length}
